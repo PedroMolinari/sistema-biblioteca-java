@@ -16,4 +16,20 @@ public class Livro {
             this.ano = ano;
             this.identificador = identificador;
         }
+
+    public String getTitulo() {
+        return titulo;
     }
+
+    public int getAno() {
+        return ano;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+}
