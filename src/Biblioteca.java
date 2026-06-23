@@ -14,6 +14,10 @@ public class Biblioteca {
         this.livros.add(livro);
     }
 
+    public void cadastrarUsuario(Usuario usuario) {
+        this.usuarios.add(usuario);
+    }
+
     public void listarLivros() {
         for (Livro livro : livros) {
             System.out.println("Título: " + livro.getTitulo());
@@ -22,4 +26,24 @@ public class Biblioteca {
             System.out.println("Disponível: " + livro.isDisponivel());
         }
     }
+
+    public Livro buscarLivro(String titulo){
+        for(Livro livro : livros){
+            if(livro.getTitulo().equals(titulo)){
+                return livro;
+            }
+        }
+        return null;
+    }
+
+    /*
+    public Usuario cadastrarUsuario(int id) {
+        for(Usuario usuario : usuarios){
+            if(usuario.getId()){
+                return id;
+            }
+            return null;
+        }
+    }
+    */
 }
