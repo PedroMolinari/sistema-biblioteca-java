@@ -36,14 +36,27 @@ public class Biblioteca {
         return null;
     }
 
-    /*
-    public Usuario cadastrarUsuario(int id) {
+    public Usuario buscarUsuario(int id) {
         for(Usuario usuario : usuarios){
-            if(usuario.getId()){
-                return id;
+            if(usuario.getId() == id){
+                return usuario;
             }
-            return null;
         }
+        return null;
     }
-    */
-}
+
+    public void empestrarLivro(int id, String titulo){
+        Usuario usuario = buscarUsuario(id);
+        Livro livro = buscarLivro(titulo);
+                if(usuario != null && livro != null){
+                    if (livro.isDisponivel()){
+                        livro.setDisponivel(false);
+                        System.out.println("Livro emprestado com sucesso!");
+                    } else {
+                        System.out.println("Livro já foi emprestado!");
+                    }
+                } else {
+                    System.out.println("Usuario/Livro não encontrado.");
+                }
+            }
+        }
