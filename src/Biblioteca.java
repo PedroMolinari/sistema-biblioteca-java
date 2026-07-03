@@ -45,18 +45,54 @@ public class Biblioteca {
         return null;
     }
 
-    public void empestrarLivro(int id, String titulo){
+    public void empestrarLivro(int id, String identificador){
         Usuario usuario = buscarUsuario(id);
-        Livro livro = buscarLivro(titulo);
+        Livro livro = buscarLivro(identificador);
                 if(usuario != null && livro != null){
                     if (livro.isDisponivel()){
                         livro.setDisponivel(false);
                         System.out.println("Livro emprestado com sucesso!");
-                    } else {
-                        System.out.println("Livro já foi emprestado!");
                     }
+                } else if (usuario != null && livro == null) {
+                    System.out.println("Livro não encontrado!");
+        } else if(usuario == null && livro != null){
+                    System.out.println("Usuário não encontrado.");
                 } else {
-                    System.out.println("Usuario/Livro não encontrado.");
+                    System.out.println("Usuário e Livro não encontrado@");
                 }
             }
+
+    public void devolerLivro(int id, String titulo){
+        Usuario usuario = buscarUsuario(id);
+        Livro livro = buscarLivro(titulo);
+            if (livro == null) {
+                System.out.println("Livro não encontrado!");
+                return;
+            } if (usuario == null) {
+                System.out.println("Usuário não encontrado.");
+                return;
+            }
+            if (!livro.isDisponivel()) {
+                livro.setDisponivel(true);
+                System.out.println("Livro devolvido com sucesso!");
+            } else if (livro.isDisponivel()) {
+                System.out.println("Livro ja está disponível na biblioteca.");
+            }
+        }
+
+    public void relatorio(){
+        int disponiveis = 0;
+        int emprestados = 0;
+        System.out.println("Existem " + livros.size() + " Livros" );
+        System.out.println("Existem " + usuarios.size() + " Usuários");
+        for (Livro livro : livros){
+            if(livro.isDisponivel()){
+                disponiveis++;
+            } else {
+                emprestados++;
+            }
+        }
+        System.out.println("Disponíveis: " + disponiveis);
+        System.out.println("Emprestados: " + emprestados);
+    }
         }
