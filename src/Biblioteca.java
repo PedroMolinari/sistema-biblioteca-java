@@ -20,10 +20,15 @@ public class Biblioteca {
 
     public void listarLivros() {
         for (Livro livro : livros) {
-            System.out.println("Título: " + livro.getTitulo());
+            System.out.println("\nTítulo: " + livro.getTitulo());
             System.out.println("Autor: " + livro.getAutor());
             System.out.println("Ano: " + livro.getAno());
-            System.out.println("Disponível: " + livro.isDisponivel());
+            if(livro.isDisponivel()){
+                System.out.println("Status: Disponível");
+            } else {
+                System.out.println("Status: Emprestado");
+            }
+            System.out.println();
         }
     }
 
@@ -51,7 +56,6 @@ public class Biblioteca {
                 if(usuario != null && livro != null){
                     if (livro.isDisponivel()){
                         livro.setDisponivel(false);
-                        System.out.println("Livro emprestado com sucesso!");
                     }
                 } else if (usuario != null && livro == null) {
                     System.out.println("Livro não encontrado!");
@@ -83,6 +87,8 @@ public class Biblioteca {
     public void relatorio(){
         int disponiveis = 0;
         int emprestados = 0;
+        System.out.println();
+        System.out.println("===== RELATORIO =====");
         System.out.println("Existem " + livros.size() + " Livros" );
         System.out.println("Existem " + usuarios.size() + " Usuários");
         for (Livro livro : livros){
@@ -92,7 +98,8 @@ public class Biblioteca {
                 emprestados++;
             }
         }
-        System.out.println("Disponíveis: " + disponiveis);
-        System.out.println("Emprestados: " + emprestados);
+        System.out.println("Livros Disponíveis: " + disponiveis);
+        System.out.println("Livros Emprestados: " + emprestados);
+        System.out.println("==================================");
     }
         }
