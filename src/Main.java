@@ -1,52 +1,8 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Biblioteca biblioteca = new Biblioteca();
-
-        System.out.println("===== LIVROS CADASTRADOS =====");
-        Livro Hobbit = new Livro(
-                "O Hobbit",
-                "Tolkien",
-                1937,
-                "H001"
-        );
-
-        Livro livro2 = new Livro(
-                "Clean Code",
-                "Robert Martin",
-                2008,
-                "CC001"
-        );
-
-        Livro livro3 = new Livro(
-                "Java Efetivo",
-                "Joshua Bloch",
-                2018,
-                "JE001"
-        );
-
-        Usuario usuario = new Usuario(
-                "Pedro",
-                1,
-                "001"
-        );
-
-        Usuario usuario2 = new Usuario(
-                "Maria",
-                2,
-                "002"
-        );
-        biblioteca.cadastrarLivro(Hobbit);
-        biblioteca.cadastrarLivro(livro2);
-        biblioteca.cadastrarLivro(livro3);
-        biblioteca.cadastrarUsuario(usuario);
-        biblioteca.cadastrarUsuario(usuario2);
-
-        biblioteca.empestrarLivro(1, "Java Efetivo");
-        biblioteca.listarLivros();
-        biblioteca.relatorio();
 
         // Scanner
         Scanner scanner = new Scanner(System.in);
@@ -60,49 +16,111 @@ public class Main {
             System.out.println("4 - Emprestar livro");
             System.out.println("5 - Devolver livro");
             System.out.println("6 - Relatório");
+            System.out.println("7 - Buscar livro");
             System.out.println("0 - Sair");
-            System.out.print("Escolha uma opção: ");
+            System.out.print("=============================");
+            System.out.print("\nEscolha uma opção: ");
 
             opcao = scanner.nextInt();
+            scanner.nextLine();
 
             switch (opcao) {
                 case 1:
-                    System.out.print("Digite o título: ");
+                    System.out.println("Digite o Título: ");
                     String titulo = scanner.nextLine();
-
-                    System.out.print("Digite o autor: ");
+                    System.out.println("Digite o Autor: ");
                     String autor = scanner.nextLine();
-
-                    System.out.print("Digite o ano: ");
+                    System.out.println("Digite o Ano: ");
                     int ano = scanner.nextInt();
                     scanner.nextLine();
-
-                    System.out.print("Digite o identificador: ");
+                    System.out.println("Digite o Identificador: ");
                     String identificador = scanner.nextLine();
 
-                    Livro livro = new Livro(
+                    Livro novoLivro = new Livro(
                             titulo,
                             autor,
                             ano,
                             identificador
                     );
-                    biblioteca.cadastrarLivro(livro);
+
+                    biblioteca.cadastrarLivro(novoLivro);
+
                     System.out.println("Livro cadastrado com sucesso!");
+
                     break;
                 case 2:
-                    System.out.println("Cadastrar usuário");
+                    System.out.println("Digite o nome do usuário");
+                    String usurname = scanner.nextLine();
+                    System.out.println("Digite um Id para o usuário:");
+                    int id = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("Digite uma senha para o usuário");
+                    String senha = scanner.nextLine();
+
+                    Usuario novoUsuario = new Usuario(
+                            usurname,
+                            id,
+                            senha
+                    );
+
+                    biblioteca.cadastrarUsuario(novoUsuario);
+                    System.out.println("Usuário cadastrado com sucesso!");
+
                     break;
                 case 3:
                     biblioteca.listarLivros();
                     break;
                 case 4:
-                    System.out.println("Emprestar livro");
+                    System.out.println("Digite o ID do usuário: ");
+                    int emprestarId = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("Digite o título do livro:");
+                    String emprestarTitulo = scanner.nextLine();
+
+                    biblioteca.emprestarLivro(
+                            emprestarId,
+                            emprestarTitulo
+                    );
+
                     break;
                 case 5:
-                    System.out.println("Devolver livro");
+                    System.out.println("Digite o ID do usuário: ");
+                    int devolverId = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("Digite o título do livro:");
+                    String devolverTitulo = scanner.nextLine();
+
+                    biblioteca.devolverLivro(
+                            devolverId,
+                            devolverTitulo
+                    );
                     break;
                 case 6:
                     biblioteca.relatorio();
+                    break;
+                case 7:
+                    System.out.println("Digite o título:");
+                    String tituloBusca = scanner.nextLine();
+
+                    Livro livroEncontrado = biblioteca.buscarLivro(
+                            tituloBusca
+                    );
+
+                    if(livroEncontrado != null){
+                            System.out.println("\nTítulo: " + livroEncontrado.getTitulo());
+                            System.out.println("Autor: " + livroEncontrado.getAutor());
+                            System.out.println("Ano: " + livroEncontrado.getAno());
+                            System.out.println("Identificador: " + livroEncontrado.getIdentificador());
+                             if(livroEncontrado.isDisponivel()){
+                                System.out.println("Status: Disponível");
+                            } else {
+                                System.out.println("Status: Emprestado");
+                            }
+                            System.out.println();
+                        }
+                    } else {
+                        System.out.println("Livro não encontrado!");
+                    }
                     break;
                 case 0:
                     System.out.println("Encerrando sistema...");

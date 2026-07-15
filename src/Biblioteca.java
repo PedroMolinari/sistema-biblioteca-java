@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Biblioteca {
     private ArrayList<Livro> livros;
@@ -23,6 +22,7 @@ public class Biblioteca {
             System.out.println("\nTítulo: " + livro.getTitulo());
             System.out.println("Autor: " + livro.getAutor());
             System.out.println("Ano: " + livro.getAno());
+            System.out.println("Identificador: " + livro.getIdentificador());
             if(livro.isDisponivel()){
                 System.out.println("Status: Disponível");
             } else {
@@ -50,23 +50,24 @@ public class Biblioteca {
         return null;
     }
 
-    public void empestrarLivro(int id, String identificador){
+    public void emprestarLivro(int id, String titulo){
         Usuario usuario = buscarUsuario(id);
-        Livro livro = buscarLivro(identificador);
+        Livro livro = buscarLivro(titulo);
                 if(usuario != null && livro != null){
                     if (livro.isDisponivel()){
                         livro.setDisponivel(false);
+                        System.out.println("Livro emprestado com sucesso!");
                     }
                 } else if (usuario != null && livro == null) {
                     System.out.println("Livro não encontrado!");
         } else if(usuario == null && livro != null){
                     System.out.println("Usuário não encontrado.");
                 } else {
-                    System.out.println("Usuário e Livro não encontrado@");
+                    System.out.println("Usuário e Livro não encontrado");
                 }
             }
 
-    public void devolerLivro(int id, String titulo){
+    public void devolverLivro(int id, String titulo){
         Usuario usuario = buscarUsuario(id);
         Livro livro = buscarLivro(titulo);
             if (livro == null) {
