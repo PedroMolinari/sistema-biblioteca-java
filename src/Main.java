@@ -4,6 +4,7 @@ public class Main {
     public static void main(String[] args) {
         Biblioteca biblioteca = new Biblioteca();
 
+        // Scanner
         Scanner scanner = new Scanner(System.in);
         int opcao = -1;
 
@@ -48,7 +49,7 @@ public class Main {
 
                     break;
                 case 2:
-                    System.out.println("Digite o nome do usuário");
+                    System.out.println("Digite o nome do usuário:");
                     String usurname = scanner.nextLine();
                     System.out.println("Digite um Id para o usuário:");
                     int id = scanner.nextInt();
@@ -106,16 +107,16 @@ public class Main {
                     );
 
                     if(livroEncontrado != null){
-                            System.out.println("\nTítulo: " + livroEncontrado.getTitulo());
-                            System.out.println("Autor: " + livroEncontrado.getAutor());
-                            System.out.println("Ano: " + livroEncontrado.getAno());
-                            System.out.println("Identificador: " + livroEncontrado.getIdentificador());
-                             if(livroEncontrado.isDisponivel()){
-                                System.out.println("Status: Disponível");
-                            } else {
-                                System.out.println("Status: Emprestado");
-                            }
-                            System.out.println();
+                        System.out.println("\nTítulo: " + livroEncontrado.getTitulo());
+                        System.out.println("Autor: " + livroEncontrado.getAutor());
+                        System.out.println("Ano: " + livroEncontrado.getAno());
+                        System.out.println("Identificador: " + livroEncontrado.getIdentificador());
+                        if(livroEncontrado.isDisponivel()){
+                            System.out.println("Status: Disponível");
+                        } else {
+                            System.out.println("Status: Emprestado");
+                        }
+                        System.out.println();
                     } else {
                         System.out.println("Livro não encontrado!");
                     }
