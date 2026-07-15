@@ -4,7 +4,6 @@ public class Main {
     public static void main(String[] args) {
         Biblioteca biblioteca = new Biblioteca();
 
-        // Scanner
         Scanner scanner = new Scanner(System.in);
         int opcao = -1;
 
